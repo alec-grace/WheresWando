@@ -40,7 +40,7 @@ def main():
     goal = 'XXXXXXXXXX'
     # TODO: difficulty = 100 // potentially make this a factor in size, just give difficulty option
     #   - second option difficulty determines similarity between background and goal characters
-    #       - train unsupervised ML to determine similarity ranking
+    #       - train unsupervised ML - NN to determine similarity ranking
     #           - Train on ASCII then test on Unicode
     #       - sort characters in binary tree
     #       - closer proximity = closer similarity
