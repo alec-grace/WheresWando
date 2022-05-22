@@ -1,12 +1,10 @@
 # Alec Grace
 # Start: 5/13/2022
 # Description: driver program for the "Where's Wando" game
+from puzzle import Puzzle
 import random
 import sys
 
-
-def goal_row(goal, chars):
-    pass
 
 def check_valid_file(filename):
     try:
@@ -15,6 +13,7 @@ def check_valid_file(filename):
     except FileNotFoundError or FileExistsError:
         print('Wow')
         return False
+
 
 def parse_char_file(filename):
     the_dict = {}
@@ -29,7 +28,7 @@ def parse_char_file(filename):
 
     return the_dict
 
-# TODO:  Make "Puzzle" class to control variables
+
 # Takes input from console to set size variable, default is 100000
 
 def main():
@@ -49,9 +48,13 @@ def main():
     #           - generate avg Unicode score
     #           - difficulty is degree of difference from avg
 
+    # TODO:
     # Prompt user for character file
     character_file = input('Enter character file or (0) for default: ')
     char_list = parse_char_file(character_file)
+
+    search_text = Puzzle(char_list, width, height, goal)
+    search_text.generate_text()
 
     # Prompt user to change default settings
     # height
@@ -62,24 +65,8 @@ def main():
     # image
     # list of easy images
     # Generate 'Waldo image' - text art
-
-    # Select target
-    row_target = random.randint(0, height)
-    col_target = random.randint(0, width)
-    # full_goal = goal_row(goal, char_list)
-
-    # Generate background text
-    with open('result.txt', 'w') as outfile:
-        for h in range(height):
-            t_row = False
-            if h == row_target:
-                t_row = True
-                outfile.write(goal)
-            else:
-                for w in range(width):
-                    key = random.randint(0, len(char_list.keys()) - 1)
-                    outfile.write(char_list[key])
-            outfile.write('\n')
+    search_text.change_settings()
+    search_text.generate_text()
 
 
 if __name__ == '__main__':
